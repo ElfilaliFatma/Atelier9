@@ -27,11 +27,11 @@ class RegisterController extends BaseController
         $input['password'] = bcrypt($input['password']);
         $user = User::create($input);
 
-        // Create the token and get the access token as a string
+    
         $token = $user->createToken('MyApp')->plainTextToken;
 
         $success = [
-            'token' => $token, // Token as a string
+            'token' => $token, 
             'name' => $user->name
         ];
 
@@ -40,7 +40,7 @@ class RegisterController extends BaseController
 
     public function login(Request $request)
     {
-        // Validate the request
+     
         $validator = Validator::make($request->all(), [
             'email' => 'required|email',
             'password' => 'required',
@@ -50,16 +50,16 @@ class RegisterController extends BaseController
             return $this->sendError('Validation Error.', $validator->errors());
         }
 
-        // Attempt to authenticate the user
+    
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             $user = Auth::user();
 
-            // Create the token and get the access token as a string
-            $token = $user->createToken('MyApp')->plainTextToken; // Access token as a string
+           
+            $token = $user->createToken('MyApp')->plainTextToken; 
 
-            // Construct the response
+         
             $success = [
-                'token' => $token, // Set the token as a string
+                'token' => $token,
                 'name' => $user->name
             ];
 

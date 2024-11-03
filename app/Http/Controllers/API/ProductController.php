@@ -1,7 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\API; // Adjust if your ProductController is in a different namespace
-
+namespace App\Http\Controllers\API; 
 use Illuminate\Http\Request;
 use App\Http\Controllers\API\BaseController;
 use App\Models\Product;
